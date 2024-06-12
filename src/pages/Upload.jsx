@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { ThreeDots } from 'react-loader-spinner';
 
@@ -40,7 +40,8 @@ function Upload() {
     try {
       setLoading(true);
 
-      const response = await axios.post('http://127.0.0.1:8000/api/upload/', formData, {
+      const apiUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000'; // Use environment variable
+      const response = await axios.post(`${apiUrl}/api/upload/`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
